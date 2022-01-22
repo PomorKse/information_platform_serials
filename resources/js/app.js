@@ -5,8 +5,9 @@ import { Routing } from './routing/Routing';
 import Navigation from './components/Navigation';
 import { getSerials } from './store/serials.slice';
 import axios from 'axios';
+import prefixPAth from '../constants/api';
 
-axios.defaults.baseURL = "http://127.0.0.1:8000";//prefixPAth;
+axios.defaults.baseURL = prefixPAth;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.post['Accept'] = 'application/json';
 
