@@ -24,7 +24,7 @@ class SerialResource extends JsonResource
             'genres' => $this->genre->pluck('title'),
             'seasons' => SeasonResource::collection($this->season),
             'count_season' => $this->season()->count(),
-            'users' => $this->users->pluck('id'),
+            //'users' => $this->users->pluck('id'),
         ];
     }
 }
