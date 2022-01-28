@@ -47,12 +47,12 @@ export const SingleSerial = () => {
         try {
             const token = localStorage.getItem('token');
 
-            const path = '/api/serials/' + serialId.toString() + '/favorite';
-            //const path = '/api/favorites/' + serialId.toString();
+            //const path = '/api/serials/' + serialId.toString() + '/favorite';
+            const path = '/api/favorites/' + serialId.toString();
             console.log(path);
 
-            const response = axios.post(path,
-                //const response = axios.put(path,
+            //const response = axios.post(path,
+                const response = axios.put(path,
                 { serial_id: serialId },
                 {
                     headers: { Authorization: `Bearer ${token}` }
