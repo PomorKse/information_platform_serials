@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { showAlert } from '../utilities/showAlert';
 
-export const API_URL = 'http://127.0.0.1:8000/api';
+export const API_URL = 'https://boiling-anchorage-83800.herokuapp.com/api';
 // export const API_URL = 'https://reqres.in/api';
 
 const authAxios = axios.create({
