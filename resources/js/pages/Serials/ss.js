@@ -1,12 +1,10 @@
-﻿import { useEffect } from 'react';
+/*import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getSerial, selectSerial } from '../../store/serial.slice';
 import { Row, Col, Button, Badge } from 'react-bootstrap';
 //import { Rating } from 'react-simple-star-rating';
-
 //import { prefixPAth } from '../../constants/api';
-
 
 
 export const SingleSerial = () => {
@@ -20,14 +18,13 @@ export const SingleSerial = () => {
 
     if (loading) return <div>Loading...</div>;
     if (hasErrors) return <div>Ошибка при загрузке.</div>;
-
+    // const separator = ' ';
     const genres = (serial.genres || ["Без категории"]).map(
         (genre) => <span key={genre.toString()}><Badge bg="secondary">{genre}</Badge>{' '}</span>
     );
     const seasonList = (serial.seasons || [""]).map(
         (season) => <div key={(season.season_number + 1).toString()}>
             <Row>
-
                 <p className="col-sm-1 mb-3 text-center">{season.season_number}</p>
                 <p className="col-sm-7 mb-3">{season.season_name}</p>
                 <p className="col-sm-3 mb-3">{season.air_date}</p>
@@ -37,33 +34,33 @@ export const SingleSerial = () => {
     );
 
     const addInFavorites = () => {
-        /* axios.interceptors.request.use(function (config) {
-            const token = localStorage.getItem('token');
-            config.headers.Authorization = `Bearer ${token}`
-            return config;
-        }) */
+        console.log(serialId)
 
+        axios.interceptors.request.use(function (config) {
+            const token = localStorage.getItem('auth_token');
+            console.log('app.js')
+            console.log(token);
+            config.headers.Authorisation = token ? `Bearer ${token}` : '';
+            return config;
+        })
 
         try {
-            const token = localStorage.getItem('token');
-
-            const path = '/api/serials/' + serialId.toString() + '/favorite';
-            //const path = '/api/favorites/' + serialId.toString();
-            console.log(path);
-
-            const response = axios.post(path,
-                //const response = axios.put(path,
-                { serial_id: serialId },
+            const response = axios.post('/api/serials/' + serialId.toString() + '/favorite',
+                { serial_id: serialId });
+            /* const token = localStorage.getItem('auth_token');
+            const response = axios.post('/api/serials/' + serialId.toString() + '/favorite',
                 {
-                    headers: { Authorization: `Bearer ${token}` }
-                });
+                    headers: {
+                        authorization: `Bearer ${token}`,
+                        serial_id: serialId
+                    }
+                }); 
             console.log('Returned data:', response);
         } catch (e) {
             console.log(`Axios request failed: ${e}`);
         }
 
     };
-
 
     return (
         <>
@@ -80,6 +77,7 @@ export const SingleSerial = () => {
                 <Col lg={3} px={0}>
                     <img src={serial.poster} className="card-img-top" alt={serial.title} />
                     <Button variant="primary" className="w-100 mt-4" onClick={addInFavorites}>Добавить в Избранное</Button>
+
                 </Col>
 
                 <Col lg={7} pl={4}>
