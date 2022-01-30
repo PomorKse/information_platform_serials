@@ -9,3 +9,4 @@ export const API_ADMIN_PARSER = prefixPAth + '/api/admin/parser';     //для �
 
 export const API_REG_COOKIE = '/sanctum/csrf-cookie';
 export const API_REGISTER = '/api/register';
+export const API_FAVORITES = prefixPAth + '/api/favorites';

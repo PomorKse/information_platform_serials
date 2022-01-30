@@ -33,7 +33,7 @@ Route::apiResources([
 
 Route::group(['prefix' => 'search'], function()
 {
-    Route::get('/', [SearchController::class, 'search']);
+    Route::get('/{search?}', [SearchController::class, 'search']);
     Route::get('/year/{start?}/{number?}/{order?}', [SortController::class, 'year']);
     Route::get('/rate/{start?}/{number?}/{order?}', [SortController::class, 'rate']);
 });

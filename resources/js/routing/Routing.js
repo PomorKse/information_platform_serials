@@ -13,6 +13,7 @@ import {
   Serials,
   SingleSerial,
   FilmInfo,
+  Search,
   SignIn,
   SignUp,
   NotFound,
@@ -53,6 +54,7 @@ export const Routing = () => {
         <Route path={ROUTES.ADMIN_SERIALS} element={<SerialsAdmin />} />
       </Route>
       <Route path='example' element={<Example />} />
+      <Route path='search' element={<Search />} />
       <Route path='*' element={<NotFound />} />
     </Routes>
   );

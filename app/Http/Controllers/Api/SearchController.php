@@ -10,10 +10,10 @@ use App\Models\Serial;
 
 class SearchController extends Controller
 {
-    public function search(SearchRequest $request)
+    public function search($search)
     {
-        $input = $request->validated()['query'];
-        $data = Serial::where('title', 'LIKE', "%{$input}%")->get()->sortByDesc('rate');
-        return SerialResource::collection($data);
+        //$input = $request->validated()['query'];
+        $search = Serial::where('title', 'LIKE', "%{$search}%")->get()->sortByDesc('rate');
+        return SerialResource::collection($search);
     }
 }

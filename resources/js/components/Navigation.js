@@ -1,6 +1,5 @@
-
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import {
   Navbar,
   Nav,
@@ -12,6 +11,7 @@ import {
 import * as ROUTES from '../constants/routes';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAuth, logout } from '../store/auth.slice';
+import authAxios from '../services/authAxios';
 
 export default function Navigation() {
   const dispatch = useDispatch();
@@ -20,6 +20,20 @@ export default function Navigation() {
 
   const logOut = () => {
     dispatch(logout());
+  };
+  
+  const [searchData, setSearchData] = useState([]);
+  let navigate = useNavigate();
+
+  const searchSerial = (key) => {
+    navigate('/search');
+    console.warn(key);
+
+    const result = authAxios.get(`search/${key}`).then( res => {
+      console.log(res);
+      setSearchData(res);
+    });
+
   };
 
   return (
@@ -72,6 +86,7 @@ export default function Navigation() {
             type='search'
             placeholder='Поиск'
             aria-label='Search'
+            onChange={(e)=>{if(e.target.value) searchSerial(e.target.value)}}
           />
           {isLoggedIn ? <LoggedInView logOut={logOut} /> : <LoggedOutView />}
         </Navbar.Collapse>
