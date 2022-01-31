@@ -22,7 +22,7 @@ export default function Navigation() {
     dispatch(logout());
   };
   
-  const [searchData, setSearchData] = useState([]);
+  const [searchSerials, setSearchSerials] = useState([]);
   let navigate = useNavigate();
 
   const searchSerial = (key) => {
@@ -30,8 +30,8 @@ export default function Navigation() {
     
     const result = authAxios.get(`search/${key}`).then( res => {
       console.log(res.data);
-      setSearchData(res.data);
-      navigate('/search', res.data);
+      setSearchSerials(res.data);
+      navigate('/search', searchSerials);
     });
 
   };
