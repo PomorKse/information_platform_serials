@@ -16,6 +16,8 @@ import serialReducer from './serial.slice';
 import authReducer from './auth.slice';
 import watchlistReducer from './watchlist.slice';
 import filtersReducer from './filters.slice';
+import favouritesReducer from './favourites.slice';
+import searchSerialsReducer from './search.slice';
 
 const rootReducer = combineReducers({
   serials: serialsReducer,
@@ -23,6 +25,8 @@ const rootReducer = combineReducers({
   auth: authReducer,
   watchlist: watchlistReducer,
   filters: filtersReducer,
+  favourites: favouritesReducer,
+  searchSerials: searchSerialsReducer,
 });
 
 // persist config obj

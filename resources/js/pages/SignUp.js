@@ -6,13 +6,18 @@ import { Row, Col } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import { useDispatch, useSelector } from 'react-redux';
 import { showAlert } from '../utilities/showAlert';
-import { selectAuth, register, clearErrors } from '../store/auth.slice';
+import { selectAuth, register, clearErrors, logout } from '../store/auth.slice';
 
 export const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { errors } = useSelector(selectAuth);
+  const { isLoggedIn } = useSelector(selectAuth);
+
+  const logOut = () => {
+    dispatch(logout());
+  };
 
   useEffect(() => {
     dispatch(clearErrors());
@@ -36,6 +41,7 @@ export const SignUp = () => {
     dispatch(register(registerInput)).then((data) => {
       if (data) {
         showAlert('Регистрация успешна.', 'success');
+        logOut();
         navigate('/signin');
       }
     });
