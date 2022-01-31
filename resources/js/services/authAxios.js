@@ -21,7 +21,7 @@ authAxios.interceptors.request.use((config) => {
 // Интерцептор показывает ошибки во всплывающем окне
 authAxios.interceptors.response.use(
   (response) => {
-    console.log(response);
+    //console.log(response);
     if (response.status >= 200 && response.status < 300) {
       return response;
     }

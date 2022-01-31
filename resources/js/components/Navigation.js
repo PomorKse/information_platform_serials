@@ -26,12 +26,12 @@ export default function Navigation() {
   let navigate = useNavigate();
 
   const searchSerial = (key) => {
-    navigate('/search');
     console.warn(key);
-
+    
     const result = authAxios.get(`search/${key}`).then( res => {
-      console.log(res);
-      setSearchData(res);
+      console.log(res.data);
+      setSearchData(res.data);
+      navigate('/search', res.data);
     });
 
   };

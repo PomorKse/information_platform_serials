@@ -10,6 +10,7 @@ export const Search = () => {
   return (
     <Container>
       <h1>Результаты поиска</h1>
+      <p>{res.data.map((serial) => <li>{serial}</li>)}</p>
 
     </Container>
   );
